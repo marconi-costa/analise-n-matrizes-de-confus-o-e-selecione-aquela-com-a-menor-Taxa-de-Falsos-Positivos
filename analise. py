@@ -1,10 +1,22 @@
+import sys
+from io import StringIO
+
+# Dados de entrada (você pode modificar aqui)
+entrada = """3
+50,10,5,85
+20,5,8,67
+30,0,4,88
+"""
+
+# Redireciona entrada padrão para usar os dados acima
+sys.stdin = StringIO(entrada)
+
+# Funções do programa
 def calcular_fpr(fp: int, tn: int) -> float:
-    """Calcula a taxa de falsos positivos (FPR), tratando divisão por zero."""
     total = fp + tn
     return fp / total if total > 0 else 0.0
 
 def formatar_valor(valor: float) -> str:
-    """Formata número com até 2 casas decimais, removendo zeros e ponto desnecessário."""
     texto = f"{valor:.2f}"
     return texto.rstrip('0').rstrip('.') if '.' in texto else texto
 
