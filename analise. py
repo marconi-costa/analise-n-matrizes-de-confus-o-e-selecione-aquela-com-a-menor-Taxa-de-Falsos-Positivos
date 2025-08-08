@@ -18,11 +18,42 @@ def calcular_fpr(fp: int, tn: int) -> float:
                                                         fpr = calcular_fpr(fp, tn)
 
                                                                 if fpr < best_fpr:
-                                                                            best_fpr = fpr
-                                                                                        best_index = idx
+def calcular_precision(tp: int, fp: int) -> float:
+    """Calcula a precisão, evitando divisão por zero."""
+    return tp / (tp + fp) if (tp + fp) > 0 else 0.0
 
-                                                                                            print(f"Index: {best_index}")
-                                                                                                print(f"FPR: {formatar_valor(best_fpr)}")
+def formatar_precision(precision: float) -> str:
+    """Formata a precisão com até duas casas decimais, removendo zeros finais."""
+    return f"{precision:.2f}".rstrip('0').rstrip('.') if '.' in f"{precision:.2f}" else str(precision)
 
-                                                                                                if __name__ == "__main__":
-                                                                                                   main()
+def main() -> None:
+    n = int(input().strip())
+    
+    melhor_indice = -1
+    melhor_precision = -1.0
+
+    for idx in range(n):
+        tp, fp, fn, tn = map(int, input().strip().split(','))
+        precision = calcular_precision(tp, fp)
+
+        if precision > melhor_precision:
+            melhor_precision = precision
+            melhor_indice = idx
+
+    print(f"Index: {melhor_indice}")
+    print(f"Precision: {formatar_precision(melhor_precision)}")
+
+if __name__ == "__main__":
+    main()Desafio
+Sua missão é desenvolver um algoritmo que analise n matrizes de confusão e selecione aquela com a menor Taxa de Falsos Positivos (FPR).
+
+A fórmula da FPR (False Positive Rate) é: FPR = FP / (FP + TN)
+
+Entrada
+Uma string contendo:
+
+Um número inteiro n, indicando o número de matrizes.
+Em seguida, n linhas com 4 valores inteiros cada, separados por vírgula, representando: TP,FP,FN,TN.
+Saída
+Index: X — onde X é o índice da matriz com menor FPR (início em 0).
+FPR: Y — a taxa de falsos positivos da matriz selecionada, com no máximo duas casas decimais (sem zeros finais desnecessários).                                                                           best_fpr = fpr                                                                                        best_index = idx                                                                                            print(f"Index: {best_index}")                                                                                                print(f"FPR: {formatar_valor(best_fpr)}")                                                                                           if __name__ == "__main__":                                                                                               main()
