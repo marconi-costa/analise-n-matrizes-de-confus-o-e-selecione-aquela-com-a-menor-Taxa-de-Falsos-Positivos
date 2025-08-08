@@ -1,0 +1,28 @@
+def calcular_fpr(fp: int, tn: int) -> float:
+    """Calcula a taxa de falsos positivos (FPR), tratando divisão por zero."""
+        total = fp + tn
+            return fp / total if total > 0 else 0.0
+
+            def formatar_valor(valor: float) -> str:
+                """Formata número com até 2 casas decimais, removendo zeros e ponto desnecessário."""
+                    texto = f"{valor:.2f}"
+                        return texto.rstrip('0').rstrip('.') if '.' in texto else texto
+
+                        def main() -> None:
+                            n = int(input().strip())
+                                best_fpr = float('inf')
+                                    best_index = -1
+
+                                        for idx in range(n):
+                                                tp, fp, fn, tn = map(int, input().strip().split(','))
+                                                        fpr = calcular_fpr(fp, tn)
+
+                                                                if fpr < best_fpr:
+                                                                            best_fpr = fpr
+                                                                                        best_index = idx
+
+                                                                                            print(f"Index: {best_index}")
+                                                                                                print(f"FPR: {formatar_valor(best_fpr)}")
+
+                                                                                                if __name__ == "__main__":
+                                                                                                    main()
