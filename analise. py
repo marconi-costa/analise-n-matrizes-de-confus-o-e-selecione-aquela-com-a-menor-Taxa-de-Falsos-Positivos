@@ -25,4 +25,4 @@ def calcular_fpr(fp: int, tn: int) -> float:
                                                                                                 print(f"FPR: {formatar_valor(best_fpr)}")
 
                                                                                                 if __name__ == "__main__":
-                                                                                                    main()
+                                                                                                   main()
